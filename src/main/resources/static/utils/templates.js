@@ -1,6 +1,6 @@
-export const listItemTemplate = station =>
-    `<div class="list-item border border-gray-200 py-2 px-4 text-gray-800" data-station-id="${station.id}">
-    ${station.name}
+export const listItemTemplate = element =>
+    `<div class="list-item border border-gray-200 py-2 px-4 text-gray-800" data-station-id="${element.id}">
+    ${element.name}
     <button class="hover:bg-gray-300 hover:text-gray-500 text-gray-300 px-1 rounded-full float-right">
        <span class="mdi mdi-delete"></span>
     </button>
@@ -27,7 +27,7 @@ export const subwayLinesTemplate = line =>
       </button>
     </div>`;
 
-export const optionTemplate = value => `<option>${value}</option>`;
+export const optionTemplate = line => `<option data-line-id="${line.id}">${line.name}</option>`;
 
 const navTemplate = `<nav class="flex items-center justify-between flex-wrap bg-yellow-500 p-4">
   <div class="flex items-center flex-shrink-0 text-gray-800 w-full">
@@ -59,8 +59,8 @@ export const subwayLinesItemTemplate = line => {
         .join("");
     return `<div class="inline-block w-1/2 px-2">
             <div class="rounded-sm w-full slider-list">
-              <div class="border ${line.bgColor} lint-title px-4 py-1">${line.title}</div>
-              <div class="overflow-y-auto height-90">
+              <div class="border ${line.bgColor} lint-title px-4 py-1" data-line-id="${line.id}">${line.name}</div>
+              <div id="subway-edge-list-${line.id}" class="overflow-y-auto height-90">
               ${stationsTemplate}
               </div>
             </div>
@@ -78,6 +78,6 @@ export const colorSelectOptionTemplate = (option, index) => {
         option.bgColor
     }" class="color-select-option button w-6 h-6 ${option.bgColor} ${
         option.hoverColor
-    } font-bold p-1 rounded">
+    } font-bold p-1 rounded ">
              </button> ${hasNewLine ? "<br/>" : ""}`;
 };
